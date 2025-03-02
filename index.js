@@ -5,6 +5,7 @@ const MAX_RETRIES = 500000;
 const RETRY_DELAY = 5000;
 const COMMAND_DELAY = 30000;
 const RECONNECT_INTERVAL = 30000;
+const SEQUENTIAL_TERMINAL_DELAY = 20000; // Delay 20 giây giữa các lần khởi động terminal
 
 const activeTerminals = new Map();
 const pendingRestarts = new Set();
@@ -330,6 +331,36 @@ const monitorNetwork = () => {
   }, 10000);
 };
 
+const startTerminalsSequentially = async (sessions) => {
+  console.log(
+    `Starting ${sessions.length} terminals sequentially with ${
+      SEQUENTIAL_TERMINAL_DELAY / 1000
+    } seconds delay between each...`
+  );
+
+  for (let i = 0; i < sessions.length; i++) {
+    const session = sessions[i];
+    console.log(
+      `Starting terminal ${i + 1}/${sessions.length}: ${session.name}`
+    );
+
+    startAndMonitorTerminal(session);
+
+    if (i < sessions.length - 1) {
+      console.log(
+        `Waiting ${
+          SEQUENTIAL_TERMINAL_DELAY / 1000
+        } seconds before starting next terminal...`
+      );
+      await new Promise((resolve) =>
+        setTimeout(resolve, SEQUENTIAL_TERMINAL_DELAY)
+      );
+    }
+  }
+
+  console.log("All terminals have been scheduled to start sequentially.");
+};
+
 const startTerminals = async () => {
   try {
     if (!process.env.SESSION_BASE64) {
@@ -342,9 +373,7 @@ const startTerminals = async () => {
 
     monitorNetwork();
 
-    for (const session of sessions) {
-      startAndMonitorTerminal(session);
-    }
+    await startTerminalsSequentially(sessions);
 
     process.stdin.resume();
 
