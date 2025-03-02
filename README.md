@@ -1,14 +1,17 @@
-# MultiTermRunner
+# 🚀 MultiTermRunner
 
-MultiTermRunner is a Node.js application that allows you to run multiple terminal sessions in parallel, each executing a sequence of commands.
+> 🖥️ *The future of terminal management is here!*
 
-## Features
+MultiTermRunner is a powerful Node.js application that enables you to run multiple terminal sessions in parallel, each executing a sequence of commands with robust monitoring and auto-recovery.
 
-- Run multiple terminal sessions simultaneously
-- Execute a sequence of commands in each terminal
-- Configure terminal sessions using environment variables
+## ✨ Features
 
-## Installation
+- 🔄 Run multiple terminal sessions simultaneously
+- ⚡ Execute a sequence of commands in each terminal
+- 🔧 Configure terminal sessions using environment variables
+- 🔌 Auto-reconnect on connection failure
+
+## 🛠️ Installation
 
 ```bash
 # Clone the repository
@@ -19,30 +22,23 @@ cd MultiTermRunner
 npm install
 ```
 
-## Usage
+## 🚦 Usage
 
 1. Configure your terminal sessions in the `.env` file
 2. Run the application:
-
-```bash
-./run.sh
-```
-
-or
-
 ```bash
 node index.js
 ```
 
-## Configuration
+## 🔧 Configuration
 
 Terminal sessions are configured through the `SESSION_BASE64` environment variable, which contains a base64-encoded JSON array of terminal session configurations.
 
 Each session configuration has:
-- `name`: A descriptive name for the terminal
-- `commands`: An array of commands to execute in sequence
+- `name`: 📝 A descriptive name for the terminal
+- `commands`: 📜 An array of commands to execute in sequence
 
-## Example
+## 💻 Example
 
 ```json
 [
@@ -55,6 +51,10 @@ Each session configuration has:
 ]
 ```
 
-## License
+## 📜 License
 
 MIT
+
+---
+
+🌟 Made with ❤️ by dongitran
