@@ -2,3 +2,4 @@ node_modules
 secret
 note
 .env
+session_commands_cache.json
