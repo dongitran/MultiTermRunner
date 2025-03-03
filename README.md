@@ -1,6 +1,6 @@
 # 🚀 MultiTermRunner
 
-> 🖥️ *The future of terminal management is here!*
+> 🖥️ Powerful multi-terminal orchestration with intelligent auto-recovery!
 
 MultiTermRunner is a powerful Node.js application that enables you to run multiple terminal sessions in parallel, each executing a sequence of commands with robust monitoring and auto-recovery.
 
